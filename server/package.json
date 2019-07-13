@@ -1,0 +1,13 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "will-o server",
+  "main": "app.js",
+  "author": "gui",
+  "license": "MIT",
+  "dependencies": {
+    "graphql-import": "^0.7.1",
+    "graphql-yoga": "^1.18.0",
+    "prisma-client-lib": "^1.34.1"
+  }
+}
