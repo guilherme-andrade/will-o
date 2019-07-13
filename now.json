@@ -1,1 +1,10 @@
-{}
+{
+  "name": "will-o",
+  "builds": [
+    { "src": "*.js", "use": "@now/node" }
+  ],
+  "routes": [
+    { "src": "/api",  "dest": "./server/app.js"},
+    { "src": "/", "dest": "./client/index.js" }
+  ]
+}
