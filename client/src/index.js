@@ -1,18 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import { apiClient } from './api';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const client = new ApolloClient({
-  uri: 'https://eu1.prisma.sh/XXXXXX'
-});
-
-
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  <ApolloProvider client={apiClient}>
     <App />
   </ApolloProvider>
   , document.getElementById('root'));

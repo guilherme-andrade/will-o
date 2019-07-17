@@ -1,0 +1,17 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": [
+          "."
+        ],
+        "alias": {
+          "@models": "./models",
+          "@graphql": "./graphql",
+          "@app": "./app.js"
+        }
+      }
+    ]
+  ]
+}

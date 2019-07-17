@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "@now/node": "^0.11.1"
-  },
-  "scripts": {
-    "now build": "node ./server/app.js && cd client && yarn start"
-  }
-}
