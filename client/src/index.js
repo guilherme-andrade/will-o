@@ -9,6 +9,7 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <ApolloProvider client={apiClient}>
     <App />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Playfair+Display:400,700&display=swap" rel="stylesheet"></link>
   </ApolloProvider>
   , document.getElementById('root'));
 

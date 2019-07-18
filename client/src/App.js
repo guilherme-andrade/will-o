@@ -1,44 +1,20 @@
-import React from 'react';
-import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
-
+import React, { Fragment } from 'react';
+import { Switch } from 'react-router'
+import { Router, Route } from "react-router-dom";
+import AdminApp from './modules/admin/components/App';
+import history from './history'
+import { GlobalStyles } from './styles'
 
 function App() {
-  const GET_COMPANIES = gql`
-    query Companies {
-      getCompanies {
-        id
-        name
-      }
-    }
-  `;
-
-  const Companies = () => (
-    <Query query={GET_COMPANIES}>
-      {({ loading, error, data }) => {
-        if (loading) return null;
-        if (error) return `Error! ${error}`;
-
-        return (
-          <div>
-            {
-              data.getCompanies.map(company => (
-                <div key={company.id}>{company.name}</div>
-              ))
-            }
-          </div>
-        );
-      }}
-    </Query>
-  );
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>companies</p>
-        {Companies()}
-      </header>
-    </div>
+    <Fragment>
+      <GlobalStyles />
+      <Router history={history}>
+        <Switch>
+          <Route path="/admin" component={() => <AdminApp />} />
+        </Switch>
+      </Router>
+    </Fragment>
   );
 }
 
