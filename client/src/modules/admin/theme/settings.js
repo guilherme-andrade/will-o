@@ -1,5 +1,5 @@
 import tinycolor from 'tinycolor2'
-import { multiplyDimension, isLight } from './functions'
+import { multiplyDimension, transparentize, colorForBackground } from './functions'
 
 const primary = tinycolor('#17CDD7');
 const secondary = tinycolor('#540D6E');
@@ -47,7 +47,7 @@ class Theme {
 
     // h1
     this.h1FontFamily = '\'Playfair Display\', serif'
-    this.h1FontSize = ''
+    this.h1FontSize = '74px'
     this.h1FontWeight = ''
     this.h1LetterSpacing = ''
     this.h1LineHeight = ''
@@ -55,7 +55,7 @@ class Theme {
 
     // h2
     this.h2FontFamily = '\'Lato\', sans-serif'
-    this.h2FontSize = ''
+    this.h2FontSize = '32px'
     this.h2FontWeight = ''
     this.h2LetterSpacing = ''
     this.h2LineHeight = ''
@@ -63,7 +63,7 @@ class Theme {
 
     // h3
     this.h3FontFamily = '\'Lato\', sans-serif'
-    this.h3FontSize = ''
+    this.h3FontSize = '24px'
     this.h3FontWeight = ''
     this.h3LetterSpacing = ''
     this.h3LineHeight = ''
@@ -121,7 +121,8 @@ class Theme {
     this.dashboardSidebarMenuWidth = '35px'
     this.dashboardSidebarLinkPadding = '2rem 1rem'
     this.dashboardLinkColor = this.linkColor
-    this.dashboardActiveLinkColor = this.activeLinkColor
+    this.dashboardLinkActiveColor = this.activeLinkColor
+    this.dashboardLinkHoverColor = transparentize(this.activeLinkColor, 0.5)
     this.dashboardMainPaddingX = '2rem'
     this.dashboardMainPaddingY = '2rem'
     this.dashboardMainBackground = this.light;
@@ -145,24 +146,35 @@ class Theme {
     this.sideModalHeaderColor = tinycolor(this.sideModalHeaderBackground).isLight() ? this.dark : this.light;
 
     // functions
-    this.colorForBackground = (background) => {
-      if (isLight(background)) {
-        return this.dark;
-      }
-      return this.light;
-    }
+    this.colorForBackground = colorForBackground
+
+    this.transparentize = transparentize
 
     // mixins
-    this.button = ({ variant, outline }) => `
-      text-decoration: none;
-      padding: ${this.buttonPaddingY} ${this.buttonPaddingX};
-      border: 2px solid ${this[variant]};
-      color: ${outline ? this[variant] : this.colorForBackground(this[variant])};
-      background: ${this[variant]};
-      font-weight: bold;
-      border-radius: ${this.borderRadius};
-    `
-  }
+    this.mixins = {
+
+      button: ({ variant, outline }) => `
+        text-decoration: none;
+        padding: ${this.buttonPaddingY} ${this.buttonPaddingX};
+        border: 2px solid ${this[variant]};
+        color: ${outline ? this[variant] : this.colorForBackground(this[variant])};
+        background: ${this[variant]};
+        font-weight: bold;
+        border-radius: ${this.borderRadius};
+
+        & > svg {
+          margin: 0 1rem;
+        }
+      `,
+
+      flex: (direction, justify, align) => `
+        display: flex;
+        flex-direction: ${direction};
+        justify-content: ${justify};
+        align-items: ${align};
+      `
+    }
+}
 
   getInstance() {
     return this;

@@ -19,3 +19,14 @@ export function toCSSDimension(value, dimension) {
 export function isLight(color) {
   return tinycolor(color).isLight();
 }
+
+export function transparentize(color, alpha) {
+  return tinycolor(color).setAlpha(alpha).toRgbString();
+}
+
+export function colorForBackground(background) {
+  if (isLight(background)) {
+    return this.dark;
+  }
+  return this.light;
+}

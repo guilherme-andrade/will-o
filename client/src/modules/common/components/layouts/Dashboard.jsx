@@ -4,6 +4,22 @@ import { Link } from 'react-router-dom'
 import { useClickOutside } from '@hooks'
 
 
+export const DashboardHeaderNav = styled.nav`
+  height: 100%;
+  ${({ theme }) => theme.mixins.flex('row', 'space-between', 'center')}
+`
+
+export const DashboardHeaderNavButton = styled(Link)`
+  ${(props) => props.theme.mixins.button(props)}
+  ${({ theme }) => theme.mixins.flex('row', 'center', 'center')}
+  height: ${props => props.theme.dashboardHeaderHeight};
+  padding-top: 0;
+  padding-bottom: 0;
+  border-radius: 0;
+  text-transform: uppercase;
+  font-size: ${({ theme }) => theme.bigFontSize};
+`
+
 export const DashboardSidebarLinkText = styled.span`
   text-transform: uppercase;
   text-decoration: none;
@@ -22,7 +38,7 @@ export const DashboardHeader = styled.header`
   right: 0;
   height: ${props => props.theme.dashboardHeaderHeight};
   border-bottom: ${({ theme }) => theme.dashboardBorder};
-  padding: 0 ${props => props.theme.dashboardMainPaddingX};
+  padding: 0 0 0 ${props => props.theme.dashboardMainPaddingX};
   box-shadow: ${({ theme }) => theme.dashboardBoxShadow};
 `
 
@@ -127,7 +143,7 @@ export const DashboardSidebarLink = styled(Link)`
   display: flex;
   justify-content: space-evenly;
   position: relative;
-  color: ${(props) => props.current ? props.theme.dashboardActiveLinkColor : props.theme.dashboardLinkColor};
+  color: ${(props) => props.current ? props.theme.dashboardLinkActiveColor : props.theme.dashboardLinkColor};
   padding: ${({ theme }) => theme.dashboardSidebarLinkPadding};
   text-decoration: none;
   font-weight: bold;
@@ -138,8 +154,16 @@ export const DashboardSidebarLink = styled(Link)`
     right: -1px;
     top: 0;
     bottom: 0;
-    background: ${(props) => props.current ? props.theme.dashboardActiveLinkColor : 'transparent'};
+    background: ${(props) => props.current ? props.theme.dashboardLinkActiveColor : 'transparent'};
     width: 2px;
+  }
+
+  &:hover {
+    color: ${(props) => props.current ? null : props.theme.dashboardLinkHoverColor};
+
+    &::after {
+      background: ${(props) => props.current ? null : props.theme.dashboardLinkHoverColor};
+    }
   }
 `
 

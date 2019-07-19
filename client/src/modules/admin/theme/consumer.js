@@ -9,6 +9,10 @@ export default styled.div`
   color:            ${props => props.theme.textColorDark};
   background:       ${props => props.theme.backgroundColorLight};
 
+  h1, h2, h3, p, small {
+    margin: 0;
+  }
+
   h1 {
     font-family:      ${props => props.theme.h1FontFamily};
     font-size:        ${props => props.theme.h1FontSize};
