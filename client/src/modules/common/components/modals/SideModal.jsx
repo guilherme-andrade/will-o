@@ -19,6 +19,7 @@ const ModalWrapper = styled(AnimatedBackdrop)`
   width: 100vw;
   height: 100vh;
   background: ${({ theme }) => theme.modalBackgroundDrop};
+  z-index: 100;
 `
 
 const AnimatedSlideDiv = posed.div({

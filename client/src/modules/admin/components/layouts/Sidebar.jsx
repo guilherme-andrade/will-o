@@ -6,7 +6,7 @@ import { DashboardSidebarNav, DashboardSidebarLink, DashboardSidebarLinkText } f
 
 function Sidebar({ location }) {
   function isCurrentRoute(path) {
-    return location.pathname === path ? 'true' : ''
+    return location.pathname.includes(path) ? 'true' : ''
   }
 
   return (

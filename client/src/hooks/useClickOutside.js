@@ -9,6 +9,9 @@ export default function(node, handleClickOutside, excluded) {
   }
 
   function isIncludedInExcludedNodes(e) {
+    if (!excluded) {
+      return;
+    }
     return excluded.some(node => node.current.contains(e.target))
   }
 

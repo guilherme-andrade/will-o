@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Switch, Route } from 'react-router'
+import { Switch, Route, withRouter } from 'react-router'
 import { ThemeProvider } from 'styled-components'
-import { DashboardLayout } from '@common/components/layouts';
-import { AdminHeader, AdminSidebar } from './layouts';
+import { DashboardLayout } from '@common/components/layouts'
+import { AdminHeader, AdminSidebar } from './layouts'
 
-import { themeSettings, ThemeConsumer } from '../theme';
+import { themeSettings, ThemeConsumer } from '../theme'
 
 import {
   IndexContainer as CompaniesIndexContainer,
@@ -14,7 +14,7 @@ import {
   IndexContainer as UsersIndexContainer
 } from '../modules/users/components/pages'
 
-export default function IndexContainer() {
+function IndexContainer({ location }) {
   const [dashboardExpanded, setdashboardExpanded] = useState(false)
 
   function handleDashboardExpand(expanded) {
@@ -25,7 +25,7 @@ export default function IndexContainer() {
     <ThemeProvider theme={themeSettings}>
       <ThemeConsumer>
         <DashboardLayout header={<AdminHeader />} sidebar={<AdminSidebar expanded={dashboardExpanded} />} onExpand={handleDashboardExpand} >
-          <Switch>
+          <Switch location={location}>
             <Route exact path="/admin/users" component={() => <UsersIndexContainer />} />
             <Route path="/admin/companies" component={() => <CompaniesIndexContainer />} />
           </Switch>
@@ -35,3 +35,4 @@ export default function IndexContainer() {
   )
 }
 
+export default withRouter(IndexContainer)
