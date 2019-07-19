@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components';
 import posed, { PoseGroup } from 'react-pose'
-
+import { useClickOutside } from '@hooks'
 
 const AnimatedBackdrop = posed.div({
   enter: {
@@ -108,19 +108,7 @@ export default function SideModal({ header, children, footer, onClose }) {
     }, 500)
   }
 
-  function handleClick(e) {
-    if (node.current.contains(e.target)) {
-      return;
-    }
-    handleClose(e)
-  }
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClick);
-    return () => {
-      document.removeEventListener("mousedown", handleClick);
-    };
-  });
+  useClickOutside(node, handleClose);
 
   return (
     <PoseGroup animateOnMount>

@@ -1,32 +1,52 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { useClickOutside } from '@hooks'
 
-const DashboardWrapper = styled.div`
+
+export const DashboardSidebarLinkText = styled.span`
+  text-transform: uppercase;
+  text-decoration: none;
+`
+
+export const DashboardWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   position: relative;
 `
 
-const DashboardHeader = styled.header`
+export const DashboardHeader = styled.header`
   position: absolute;
   top: 0;
   left: ${props => props.theme.dashboardSidebarWidth};
   right: 0;
   height: ${props => props.theme.dashboardHeaderHeight};
-  border-bottom: 1px solid gray;
+  border-bottom: ${({ theme }) => theme.dashboardBorder};
   padding: 0 ${props => props.theme.dashboardMainPaddingX};
+  box-shadow: ${({ theme }) => theme.dashboardBoxShadow};
 `
 
-const DashboardSidebar = styled.aside`
+export const DashboardSidebar = styled.aside`
   position: absolute;
-  top: ${props => props.theme.dashboardHeaderHeight};
+  top: ${({ theme }) => theme.dashboardHeaderHeight};
   left: 0;
-  width: ${props => props.theme.dashboardSidebarWidth};
-  height: calc(100% - ${props => props.theme.dashboardHeaderHeight});
-  border-right: 1px solid gray;
+  width: ${props => props.expanded ? props.theme.dashboardSidebarExpandedWidth : props.theme.dashboardSidebarWidth};
+  bottom: 0;
+  border-right: ${({ theme }) => theme.dashboardBorder};
+  box-shadow: ${({ theme }) => theme.dashboardBoxShadow};
+  padding-bottom: ${({ theme }) => theme.dashboardHeaderHeight};
+  background: ${({ theme }) => theme.backgroundColor};
+  z-index: 10;
+  transition: width 0.2s ease-in;
+
+  ${DashboardSidebarLinkText} {
+    display: ${(props) => props.expanded ? 'block' : 'none'};
+    transform: ${(props) => props.expanded ? 'scaleX(1)' : 'scaleX(0.5)'};
+    opacity: ${(props) => props.expanded ? '1' : '0.5'};
+  }
 `
 
-const DashboardMain = styled.main`
+export const DashboardMain = styled.main`
   position: absolute;
   top: ${props => props.theme.dashboardHeaderHeight};
   left: ${props => props.theme.dashboardSidebarWidth};
@@ -48,21 +68,23 @@ const DashboardMain = styled.main`
   }
 `
 
-const DashboardSidebarToggle = styled.button`
+export const DashboardSidebarToggle = styled.button`
   width: calc(${props => props.theme.dashboardSidebarWidth} + 1px);
   height: calc(${props => props.theme.dashboardHeaderHeight} + 1px);
   margin: 0;
   outline: none;
   border-left: none;
   border-top: none;
-  border-bottom: 1px solid gray;
-  border-right: 1px solid gray;
+  border-bottom: ${({ theme }) => theme.dashboardBorder};
+  border-right: ${({ theme }) => theme.dashboardBorder};
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 3;
+  background: ${({ theme }) => theme.dashboardToggleBackground};
 `
 
-const BurgerMenu = styled.span`
+export const BurgerMenu = styled.span`
   height: ${props => props.theme.dashboardSidebarMenuWidth};
   width: ${props => props.theme.dashboardSidebarMenuWidth};
   position: relative;
@@ -73,7 +95,7 @@ const BurgerMenu = styled.span`
     bottom: calc(${props => props.expanded ? '50%' : '11px'} - 1px);
     position: absolute;
     width: ${props => props.expanded ? '100%' : '75%'};
-    border: 1px solid ${props => props.theme.textColor};
+    border: 1px solid ${({ theme }) => theme.colorForBackground(theme.dashboardToggleBackground)};
     border-radius: 5px;
     transition: all 0.2s ease;
     transform: ${props => props.expanded ? 'rotate(45deg)' : ''};
@@ -85,15 +107,47 @@ const BurgerMenu = styled.span`
     top: calc(${props => props.expanded ? '50%' : '11px'} - 1px);
     position: absolute;
     width: 100%;
-    border: 1px solid ${props => props.theme.textColor};
+    border: 1px solid ${({ theme }) => theme.colorForBackground(theme.dashboardToggleBackground)};
     border-radius: 5px;
     transition: all 0.2s ease;
     transform: ${props => props.expanded ? 'rotate(-45deg)' : ''};
   }
 `
 
+
+export const DashboardSidebarNav = styled.nav`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
+
+
+export const DashboardSidebarLink = styled(Link)`
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+  color: ${(props) => props.current ? props.theme.dashboardActiveLinkColor : props.theme.dashboardLinkColor};
+  padding: ${({ theme }) => theme.dashboardSidebarLinkPadding};
+  text-decoration: none;
+  font-weight: bold;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 0;
+    bottom: 0;
+    background: ${(props) => props.current ? props.theme.dashboardActiveLinkColor : 'transparent'};
+    width: 2px;
+  }
+`
+
+
 export default function Dashboard({ sidebar, header, children, onExpand }) {
   const [expanded, setExpanded] = useState(false);
+  const node = useRef();
+  const toggle = useRef();
 
   useEffect(() => {
     onExpand(expanded)
@@ -104,16 +158,21 @@ export default function Dashboard({ sidebar, header, children, onExpand }) {
     setExpanded(!expanded)
   }
 
+  function handleClose() {
+    setExpanded(false)
+  }
+
+  useClickOutside(node, handleClose, [toggle])
 
   return (
     <DashboardWrapper>
-      <DashboardSidebarToggle expanded={expanded} onClick={handleToggleClick}>
+      <DashboardSidebarToggle expanded={expanded} onClick={handleToggleClick} ref={toggle}>
         <BurgerMenu expanded={expanded} />
       </DashboardSidebarToggle>
       <DashboardHeader>
         {header}
       </DashboardHeader>
-      <DashboardSidebar>
+      <DashboardSidebar expanded={expanded} ref={node}>
         {sidebar}
       </DashboardSidebar>
       <DashboardMain expanded={expanded}>

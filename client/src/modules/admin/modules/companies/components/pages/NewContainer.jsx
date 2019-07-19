@@ -1,6 +1,6 @@
 import React from 'react'
-import { GraphqlClient } from '../../api'
 import { Mutation } from 'react-apollo'
+import { GraphqlClient } from '../../api'
 import { AdminCompanyForm } from '../views'
 
 export default function NewContainer() {

@@ -1,27 +1,30 @@
 import React from 'react'
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBuilding } from '@fortawesome/pro-light-svg-icons'
+import { faBuilding, faUsers } from '@fortawesome/pro-light-svg-icons'
+import { DashboardSidebarNav, DashboardSidebarLink, DashboardSidebarLinkText } from '@common/components/layouts/Dashboard'
 
-const AdminSidebar = styled.nav`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`
+function Sidebar({ location }) {
+  function isCurrentRoute(path) {
+    return location.pathname === path ? 'true' : ''
+  }
 
-const AdminSidebarLink =  styled(Link)`
-  display: flex;
-  justify-content: center;
-`
-
-export default function Sidebar({ expanded }) {
   return (
-    <AdminSidebar>
-      <AdminSidebarLink to="/admin/companies">
-        <FontAwesomeIcon icon={faBuilding} />
-      </AdminSidebarLink>
-    </AdminSidebar>
+    <DashboardSidebarNav>
+      <DashboardSidebarLink to="/admin/companies" current={isCurrentRoute('/admin/companies')}>
+        <FontAwesomeIcon icon={faBuilding} size="lg"/>
+        <DashboardSidebarLinkText>
+          manage
+        </DashboardSidebarLinkText>
+      </DashboardSidebarLink>
+      <DashboardSidebarLink to="/admin/users" current={isCurrentRoute('/admin/users')}>
+        <FontAwesomeIcon icon={faUsers} size="lg"/>
+        <DashboardSidebarLinkText>
+          manage
+        </DashboardSidebarLinkText>
+      </DashboardSidebarLink>
+    </DashboardSidebarNav>
   )
 }
+
+export default withRouter(Sidebar)

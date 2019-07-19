@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Switch, Route } from 'react-router'
 import { ThemeProvider } from 'styled-components'
-import { DashboardLayout } from '../../common/components/layouts';
+import { DashboardLayout } from '@common/components/layouts';
 import { AdminHeader, AdminSidebar } from './layouts';
 
 import { themeSettings, ThemeConsumer } from '../theme';

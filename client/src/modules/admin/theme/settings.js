@@ -74,10 +74,14 @@ class Theme {
     this.borderLarge = ''
 
 
+    // backdrops
+    this.backdropColor = 'rgba(0, 0, 0, 0.16)'
+
+
     // box shadow
-    this.boxShadow = ''
-    this.boxShadowLarge = ''
-    this.boxShadowSmall = ''
+    this.boxShadow = `0 0 16px -8px ${this.backdropColor}`
+    this.boxShadowLarge = `0 0 32px -16px ${this.backdropColor}`
+    this.boxShadowSmall = `0 0 8px -4px ${this.backdropColor}`
 
 
     // border radius
@@ -93,6 +97,10 @@ class Theme {
 
     // components
 
+    // links
+    this.linkColor = this.textColor
+    this.activeLinkColor = this.primary
+
     // input
     this.inputPaddingY = '.25rem'
     this.inputPaddingX = multiplyDimension(this.inputPaddingY, 2)
@@ -100,11 +108,10 @@ class Theme {
 
     // button
     this.buttonPaddingY = '.75rem'
-    this.buttonPaddingX = multiplyDimension(this.buttonPaddingY, 2)
+    this.buttonPaddingX = multiplyDimension(this.buttonPaddingY, 3)
 
 
     // layouts
-
 
     // dashboard
     this.dashboardHeaderHeight = '76px'
@@ -112,8 +119,15 @@ class Theme {
     this.dashboardSidebarExpandedWidth = '300px'
     this.dashboardSidebarAccentWidth = '2px'
     this.dashboardSidebarMenuWidth = '35px'
+    this.dashboardSidebarLinkPadding = '2rem 1rem'
+    this.dashboardLinkColor = this.linkColor
+    this.dashboardActiveLinkColor = this.activeLinkColor
     this.dashboardMainPaddingX = '2rem'
     this.dashboardMainPaddingY = '2rem'
+    this.dashboardMainBackground = this.light;
+    this.dashboardBorder = '1px solid transparent'
+    this.dashboardBoxShadow = this.boxShadowLarge
+    this.dashboardToggleBackground = this.textColor
 
 
     // modals
@@ -149,6 +163,12 @@ class Theme {
       border-radius: ${this.borderRadius};
     `
   }
+
+  getInstance() {
+    return this;
+  }
 }
 
-export default new Theme();
+const theme = new Theme();
+
+export default theme.getInstance();

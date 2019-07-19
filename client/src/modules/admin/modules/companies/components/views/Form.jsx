@@ -1,6 +1,6 @@
 import React from 'react'
-import { SideModal } from '../../../../../../modules/common/components/modals'
-import history from '../../../../../../history/'
+import { SideModal } from '@common/components/modals'
+import history from '@history'
 
 export default function Form({ createCompany, company }) {
 
