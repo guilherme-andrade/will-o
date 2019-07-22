@@ -99,7 +99,7 @@ class Theme {
 
     // links
     this.linkColor = this.textColor
-    this.activeLinkColor = this.primary
+    this.activeLinkColor = this.textColor
 
     // input
     this.inputPaddingY = '.25rem'
@@ -122,7 +122,7 @@ class Theme {
     this.dashboardSidebarLinkPadding = '2rem 1rem'
     this.dashboardLinkColor = this.linkColor
     this.dashboardLinkActiveColor = this.activeLinkColor
-    this.dashboardLinkHoverColor = transparentize(this.activeLinkColor, 0.5)
+    this.dashboardLinkHoverColor = transparentize(this.dashboardLinkActiveColor, 0.5)
     this.dashboardMainPaddingX = '2rem'
     this.dashboardMainPaddingY = '2rem'
     this.dashboardMainBackground = this.light;

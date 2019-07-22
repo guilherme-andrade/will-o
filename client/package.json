@@ -52,5 +52,6 @@
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "react-app-rewire-aliases": "^0.2.0"
-  }
+  },
+  "proxy":  "http://server:8000"
 }

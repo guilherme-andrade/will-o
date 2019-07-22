@@ -8,9 +8,9 @@
           "."
         ],
         "alias": {
-          "@models": "./models",
-          "@graphql": "./graphql",
-          "@app": "./app.js"
+          "@graphql": "./src/graphql",
+          "@src": "./src",
+          "@models": "./src/models"
         }
       }
     ]
