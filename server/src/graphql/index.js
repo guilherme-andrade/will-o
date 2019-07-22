@@ -1,20 +1,23 @@
-// import all resolvers and types
-import * as company from './company'
-import * as fraction from './fraction'
-import * as user from './user'
-
+'use strict';
 import { makeExecutableSchema } from 'graphql-tools'
 import { merge } from 'lodash'
+import fs from 'fs'
+
+const typeDefs = []
+const resolvers = []
+
+function isDirectory(path) {
+  return fs.lstatSync(`${__dirname}/${path}`).isDirectory();
+}
+
+fs.readdirSync(__dirname)
+  .filter(isDirectory)
+  .forEach(path => {
+    typeDefs.push(require(`${__dirname}/${path}/typeDefs`).default);
+    resolvers.push(require(`${__dirname}/${path}/resolvers`).default);
+  });
 
 export default makeExecutableSchema({
-  typeDefs: [
-    company.typeDefs,
-    user.typeDefs,
-    fraction.typeDefs
-  ],
-  resolvers: merge(
-    company.resolvers,
-    user.resolvers,
-    fraction.resolvers
-  ),
+  typeDefs: typeDefs,
+  resolvers: merge(...resolvers),
 });

@@ -1,17 +1,18 @@
 import { gql } from 'apollo-server-express'
 
 export default gql`
-  type Fraction {
-    uuid: String!
+  type Unit {
+    id: String!
     name: String
-    company: Company!
+    Company: Company!
+    Property: Property!
   }
 
   extend type Query {
-    getFractions: [Fraction]
+    getUnits: [Unit]
   }
 
   extend type Mutation {
-    createFraction(name: String!): Fraction!
+    createUnit(name: String!): Unit!
   }
 `
