@@ -1,1 +1,2 @@
-export { default as DashboardLayout } from './Dashboard'
+export { default as DashboardLayout } from './DashboardLayout'
+export { default as SplitScreenLayoutLayout } from './SplitScreenLayout'

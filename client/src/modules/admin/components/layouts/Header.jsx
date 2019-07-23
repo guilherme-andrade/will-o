@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <DashboardHeaderNav>
       <h2>Companies</h2>
-      <DashboardHeaderNavButton variant="dark" to="/admin/companies/new">
+      <DashboardHeaderNavButton variant="textColor" to="/admin/companies/new">
         Create New
         <FontAwesomeIcon icon={faPlus} />
       </DashboardHeaderNavButton>

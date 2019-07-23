@@ -5,6 +5,8 @@ export default gql`
     id: String!
     name: String
     users: [User]
+    createdAt: DateTime
+    updatedAt: DateTime
   }
 
   type Query {

@@ -2,5 +2,7 @@
   getCompanies {
     id
     name
+    createdAt
+    updatedAt
   }
 }
