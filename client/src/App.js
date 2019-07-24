@@ -6,11 +6,11 @@ import { ThemeProvider } from 'styled-components'
 import AdminApp from '@modules/admin/components/App'
 import { LoginContainer, RegisterContainer } from '@modules/auth/components/pages'
 import history from '@history'
-import { GlobalStyles, themeSettings } from '@styles'
+import { GlobalStyles, theme } from '@styles'
 
 function App() {
   return (
-    <ThemeProvider theme={themeSettings}>
+    <ThemeProvider theme={theme}>
       <Fragment>
         <GlobalStyles />
         <Router history={history}>

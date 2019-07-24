@@ -28,8 +28,6 @@ export default {
     },
     async register(_parent, { email, password }) {
       const hashedPassword = await bcrypt.hash(password, 10)
-      console.log("USER----->", email, password);
-
       const user = await User.create({
         email,
         password: hashedPassword,
@@ -41,7 +39,7 @@ export default {
         },
         "my-secret-from-env-file-in-prod",
         {
-          expiresIn: "30d" // token will expire in 30days
+          expiresIn: "30d"
         }
       );
       return { user, token }
@@ -62,7 +60,7 @@ export default {
         },
         'my-secret-from-env-file-in-prod',
         {
-          expiresIn: '30d', // token will expire in 30days
+          expiresIn: '30d',
         },
       )
       return { token, user }

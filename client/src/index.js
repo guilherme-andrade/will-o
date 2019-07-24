@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import { ApolloProvider } from 'react-apollo';
-import { apiClient } from './api';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <ApolloProvider client={apiClient}>
+  <Fragment>
     <App />
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Playfair+Display:400,700&display=swap" rel="stylesheet"></link>
-  </ApolloProvider>
+  </Fragment>
   , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
