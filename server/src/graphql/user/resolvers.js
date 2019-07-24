@@ -28,10 +28,23 @@ export default {
     },
     async register(_parent, { email, password }) {
       const hashedPassword = await bcrypt.hash(password, 10)
-      return await User.create({
+      console.log("USER----->", email, password);
+
+      const user = await User.create({
         email,
         password: hashedPassword,
       })
+      const token = jwt.sign(
+        {
+          id: user.id,
+          email: user.email
+        },
+        "my-secret-from-env-file-in-prod",
+        {
+          expiresIn: "30d" // token will expire in 30days
+        }
+      );
+      return { user, token }
     },
     async login(_parent, { email, password }) {
       const user = await User.findOne({ where: { email } })

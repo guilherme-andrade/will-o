@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBuilding, faUsers } from '@fortawesome/pro-light-svg-icons'
-import { DashboardSidebarNav, DashboardSidebarLink, DashboardSidebarLinkText } from '@common/components/layouts/Dashboard'
+import { DashboardSidebarNav, DashboardSidebarLink, DashboardSidebarLinkText } from '@common/components/layouts/DashboardLayout'
 
 function Sidebar({ location }) {
   function isCurrentRoute(path) {

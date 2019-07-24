@@ -18,6 +18,7 @@ module.exports = function override(config, env) {
     '@common-layouts': path.resolve(__dirname, `${paths.appSrc}/modules/common/components/layouts`),
     '@common-modals': path.resolve(__dirname, `${paths.appSrc}/modules/common/components/modals`),
     '@common-tables': path.resolve(__dirname, `${paths.appSrc}/modules/common/components/tables`),
+    '@common-illustrations': path.resolve(__dirname, `${paths.appSrc}/modules/common/components/illustrations`),
   })(config, env);
 
   return config;

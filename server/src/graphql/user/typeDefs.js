@@ -3,7 +3,7 @@ import { gql } from 'apollo-server-express'
 export default gql`
   type User {
     id: String!
-    email: String
+    email: EmailAddress
     Company: Company
   }
 
@@ -13,10 +13,10 @@ export default gql`
   }
 
   extend type Mutation {
-    createUser(email: String!, CompanyId: String!): User!,
-    updateUser(email: String!): User!,
+    createUser(email: String!, CompanyId: String!): User!
+    updateUser(email: String!): User!
     destroyAllUsers: [User]
-    register(email: String!, password: String!): User!
+    register(email: String!, password: String!): LoginResponse!
     login(email: String!, password: String!): LoginResponse!
   }
 
@@ -24,4 +24,4 @@ export default gql`
     token: String
     user: User
   }
-`
+`;

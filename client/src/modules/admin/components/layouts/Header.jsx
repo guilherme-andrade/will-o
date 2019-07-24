@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/pro-light-svg-icons'
-import { DashboardHeaderNav, DashboardHeaderNavButton } from '@common/components/layouts/Dashboard'
+import { DashboardHeaderNav, DashboardHeaderNavButton } from '@common/components/layouts/DashboardLayout'
 
 export default function Header() {
   return (

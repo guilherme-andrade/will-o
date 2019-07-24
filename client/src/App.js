@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Switch } from 'react-router'
 import { Router, Route } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
@@ -6,12 +6,12 @@ import { ThemeProvider } from 'styled-components'
 import AdminApp from '@modules/admin/components/App'
 import { LoginContainer, RegisterContainer } from '@modules/auth/components/pages'
 import history from '@history'
-import { GlobalStyles, themeSettings, ThemeConsumer } from '@styles'
+import { GlobalStyles, themeSettings } from '@styles'
 
 function App() {
   return (
     <ThemeProvider theme={themeSettings}>
-      <ThemeConsumer>
+      <Fragment>
         <GlobalStyles />
         <Router history={history}>
           <Switch>
@@ -20,7 +20,7 @@ function App() {
             <Route path="/register" component={() => <RegisterContainer />} />
           </Switch>
         </Router>
-      </ThemeConsumer>
+      </Fragment>
     </ThemeProvider>
   );
 }
