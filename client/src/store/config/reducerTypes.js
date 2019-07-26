@@ -1,0 +1,34 @@
+
+// for collections
+export const FETCH_PENDING = 'FETCH_PENDING'
+export const FETCH_SUCCESS = 'FETCH_SUCCESS'
+export const FETCH_FAILURE = 'FETCH_FAILURE'
+
+// for a single resource
+export const LOAD_PENDING = 'LOAD_PENDING'
+export const LOAD_SUCCESS = 'LOAD_SUCCESS'
+export const LOAD_FAILURE = 'LOAD_FAILURE'
+
+export const CREATE_PENDING = 'CREATE_PENDING'
+export const CREATE_SUCCESS = 'CREATE_SUCCESS'
+export const CREATE_FAILURE = 'CREATE_FAILURE'
+
+export const UPDATE_PENDING = 'UPDATE_PENDING'
+export const UPDATE_SUCCESS = 'UPDATE_SUCCESS'
+export const UPDATE_FAILURE = 'UPDATE_FAILURE'
+
+export const DESTROY_PENDING = 'DESTROY_PENDING'
+export const DESTROY_SUCCESS = 'DESTROY_SUCCESS'
+export const DESTROY_FAILURE = 'DESTROY_FAILURE'
+
+export const LOGIN_PENDING = 'LOGIN_PENDING'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+
+export const REGISTER_PENDING = 'REGISTER_PENDING'
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
+export const REGISTER_FAILURE = 'REGISTER_FAILURE'
+
+export const UPDATE_FIELD = 'UPDATE_FIELD'
+export const UPDATE_ENTRY = 'UPDATE_ENTRY'
+export const RESET = 'RESET'

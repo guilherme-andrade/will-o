@@ -1,0 +1,5 @@
+export const FETCH = 'fetch'
+export const LOAD = 'load'
+export const CREATE = 'create'
+export const UPDATE = 'update'
+export const DESTROY = 'destroy'

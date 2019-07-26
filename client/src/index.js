@@ -1,13 +1,21 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
+import createStore from '@store';
+import { Provider } from 'react-redux';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { ApiClient } from '@api';
+
+const store = createStore(ApiClient, undefined);
+
 ReactDOM.render(
   <Fragment>
-    <App />
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Playfair+Display:400,700&display=swap" rel="stylesheet"></link>
+    <Provider store={store}>
+      <App />
+      <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Playfair+Display:400,700&display=swap" rel="stylesheet"></link>
+    </Provider>
   </Fragment>
   , document.getElementById('root'));
 
