@@ -15,10 +15,11 @@ const instance = axios.create({
   headers: { 'X-Custom-Header': 'foobar' }
 });
 
-export default {
+const client = {
   [FETCH]:  (resource) => instance.get(resource),
   [LOAD]:   (resource, id) => instance.get(resource, { params: { id } }),
   [CREATE]: (resource, data) => instance.post(resource, { data }),
   [UPDATE]: (resource, id, data) => instance.put(resource, { params: { id }, data }),
   [DESTROY]: (resource, id) => instance.delete(resource, { params: { id } }),
 }
+export default client

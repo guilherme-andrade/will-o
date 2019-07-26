@@ -3,11 +3,11 @@ import { reducerTypes, actionTypes } from '../config'
 export const statusTypes = ['PENDING', 'SUCCESS', 'FAILURE']
 
 export const actionReducers = {
-  default: (module, action) => [`${module}/${action}`],
-  withStatus: (module, action) => statusTypes.map(type => `${module}/${action}_${type}`)
+  default: (action) => [action],
+  withStatus: (action) => statusTypes.map(type => `${action}_${type}`)
 }
 
-export function moduleReducers(namespace) {
+export function defaultModuleReducers(namespace) {
   const result = {}
   Object.keys(reducerTypes).forEach(key => {
     result[key] = `${namespace}/${reducerTypes[key]}`
@@ -15,9 +15,25 @@ export function moduleReducers(namespace) {
   return result
 }
 
-export function moduleActions(namespace) {
+export function defaultModuleActions(namespace) {
   const result = {}
   Object.keys(actionTypes).forEach(key => {
+    result[key] = `${namespace}/${actionTypes[key]}`
+  })
+  return result
+}
+
+export function moduleActions(namespace, actions) {
+  const result = {}
+  Object.keys(actions).forEach(key => {
+    result[key] = `${namespace}/${actions[key]}`
+  })
+  return result
+}
+
+export function moduleReducers(namespace, reducers) {
+  const result = {}
+  Object.keys(reducers).forEach(key => {
     result[key] = `${namespace}/${actionTypes[key]}`
   })
   return result

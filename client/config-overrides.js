@@ -9,6 +9,7 @@ module.exports = function override(config, env) {
 
   config = rewireAliases.aliasesOptions({
     '@modules': path.resolve(__dirname, `${paths.appSrc}/modules`),
+    '@admin-modules': path.resolve(__dirname, `${paths.appSrc}/modules/admin/modules`),
     '@common': path.resolve(__dirname, `${paths.appSrc}/modules/common`),
     '@hooks': path.resolve(__dirname, `${paths.appSrc}/hooks`),
     '@admin': path.resolve(__dirname, `${paths.appSrc}/modules/admin`),

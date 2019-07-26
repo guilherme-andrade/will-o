@@ -1,10 +1,15 @@
 import React, { Fragment } from 'react'
+import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router'
+import moment from 'moment'
+import actions from '@admin-modules/companies/store/actions'
+import { ACTION_TYPES } from '@admin-modules/companies/config'
 import { NewContainer } from './'
 import { Table } from '@common-tables'
-import moment from 'moment'
 
-export default function IndexContainer() {
+function IndexContainer({ load }) {
+  load()
+
   const headers = [
     {
       field: 'name',
@@ -43,3 +48,12 @@ export default function IndexContainer() {
     </Fragment>
   )
 }
+
+const mapDispatchToProps = dispatch => ({
+  load: () => dispatch(actions[ACTION_TYPES.LOAD]())
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(IndexContainer);

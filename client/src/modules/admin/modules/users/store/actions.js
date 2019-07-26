@@ -9,25 +9,27 @@ const {
   UPDATE_FIELD
 } = ACTIONS;
 
+console.log(LOAD);
+
 export default {
   [LOAD]: () => ({
-    types: actionReducers.withStatus(NAMESPACE, LOAD),
+    types: actionReducers.withStatus(LOAD),
     promise: client => client[API_ACTIONS.LOAD]
   }),
   [LOGIN]: () => ({
-    types: actionReducers.withStatus(NAMESPACE, LOGIN),
+    types: actionReducers.withStatus(LOGIN),
     promise: client => client[API_ACTIONS.LOGIN]
   }),
   [REGISTER]: () => ({
-    types: actionReducers.withStatus(NAMESPACE, REGISTER),
+    types: actionReducers.withStatus(REGISTER),
     promise: () => {}
   }),
   [LOGOUT]: () => ({
-    types: actionReducers.default(NAMESPACE, LOGOUT),
+    types: actionReducers.default(LOGOUT),
     promise: () => { }
   }),
   [UPDATE_FIELD]: () => ({
-    types: actionReducers.default(NAMESPACE, UPDATE_FIELD),
+    types: actionReducers.default(UPDATE_FIELD),
     promise: () => { }
   }),
 }
