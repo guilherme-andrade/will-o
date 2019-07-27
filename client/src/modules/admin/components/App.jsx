@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Switch, Route, withRouter } from 'react-router'
 import { DashboardLayout } from '@common/components/layouts'
 import { AdminHeader, AdminSidebar } from './layouts'
+import { requireAuth } from '@modules/auth/helpers'
 
 import {
   IndexContainer as CompaniesIndexContainer,
@@ -11,7 +12,7 @@ import {
   IndexContainer as UsersIndexContainer
 } from '../modules/users/components/pages'
 
-function IndexContainer({ location }) {
+function AdminApp({ location }) {
   const [dashboardExpanded, setdashboardExpanded] = useState(false)
 
   function handleDashboardExpand(expanded) {
@@ -28,4 +29,4 @@ function IndexContainer({ location }) {
   )
 }
 
-export default withRouter(IndexContainer)
+export default withRouter(requireAuth(AdminApp));

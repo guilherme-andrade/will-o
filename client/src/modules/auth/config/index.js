@@ -9,5 +9,5 @@ export const API_ACTIONS = {
   LOGIN: 'login'
 }
 
-export const ACTIONS = defaultModuleActions(NAMESPACE)
-export const REDUCERS = defaultModuleReducers(NAMESPACE)
+export const ACTION_TYPES = defaultModuleActions(NAMESPACE)
+export const REDUCER_TYPES = defaultModuleReducers(NAMESPACE)

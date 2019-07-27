@@ -1,4 +1,4 @@
-import { NAMESPACE, ACTIONS, API_ACTIONS } from '../config'
+import { NAMESPACE, ACTION_TYPES, API_ACTIONS } from '../config'
 import { actionReducers } from '@store/helpers'
 
 const {
@@ -7,7 +7,7 @@ const {
   REGISTER,
   LOGOUT,
   UPDATE_FIELD
-} = ACTIONS;
+} = ACTION_TYPES
 
 export default {
   [LOAD]: () => ({

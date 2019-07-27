@@ -1,4 +1,4 @@
-import { REDUCERS } from '../config'
+import { REDUCER_TYPES } from '../config'
 
 const {
   LOAD_PENDING,
@@ -12,7 +12,7 @@ const {
   REGISTER_FAILURE,
   UPDATE_FIELD,
   RESET
-} = REDUCERS
+} = REDUCER_TYPES
 
 export default {
   [LOAD_PENDING]: (state, _action) => ({
