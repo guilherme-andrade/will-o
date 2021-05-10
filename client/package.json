@@ -11,7 +11,7 @@
     "babel-plugin-module-resolver": "^3.2.0",
     "dotenv": "^8.0.0",
     "immutable": "^4.0.0-rc.12",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "lodash.template": "^4.5.0",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
